@@ -29,7 +29,9 @@ jobs:
           GITAUTHOR_EMAIL: ops-bot@luiz.dev
           GIT_COMMITTER_NAME: ops-bot
           GIT_COMMITTER_EMAIL: ops-bot@luiz.dev
-        run: npm run release
+        run: |
+          npm run release
+          npm run web-ext build
       - name: Get version from package.json after release step
         id: post_release_version
         run: echo "::set-output name=version::$(npm run get-version --silent)"
