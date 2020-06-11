@@ -1,5 +1,5 @@
 {
-  "name": "ddg-test-project",
+  "name": "sample-webextension",
   "version": "0.0.1",
   "description": "Tracker blocker extension",
   "type": "module",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lfilho/ddg-test-project.git"
+    "url": "git+https://github.com/lfilho/sample-webextension.git"
   },
   "author": "anonymous",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lfilho/ddg-test-project/issues"
+    "url": "https://github.com/lfilho/sample-webextension/issues"
   },
-  "homepage": "https://github.com/lfilho/ddg-test-project#readme",
+  "homepage": "https://github.com/lfilho/sample-webextension#readme",
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
