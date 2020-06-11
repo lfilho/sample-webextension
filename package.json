@@ -9,7 +9,8 @@
     "lint": "eslint **/*.js",
     "//": "eslint is configured with prettier, so it will check and fix js formatting too",
     "lint:fix": "npm run lint -- --fix",
-    "pretest": "npm run lint"
+    "pretest": "npm run lint",
+    "test": "echo '//TODO' && exit 0"
   },
   "repository": {
     "type": "git",
