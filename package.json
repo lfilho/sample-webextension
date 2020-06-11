@@ -5,8 +5,11 @@
   "type": "module",
   "main": "",
   "scripts": {
-    "posttest": "npm run format",
-    "format": "prettier --write \"**/*.{js,json,css,md}\""
+    "format": "prettier --write \"**/*.{js,json,css,md}\"",
+    "lint": "eslint **/*.js",
+    "//": "eslint is configured with prettier, so it will check and fix js formatting too",
+    "lint:fix": "npm run lint -- --fix",
+    "pretest": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,10 @@
   },
   "homepage": "https://github.com/lfilho/ddg-test-project#readme",
   "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-formatter-pretty": "3.0.1",
+    "eslint-plugin-prettier": "3.1.3",
     "husky": "4.2.5",
     "lint-staged": "10.2.9",
     "prettier": "2.0.5"
@@ -29,9 +36,31 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md}": "npm run format"
+    "*.{json,css,md}": "npm run format --",
+    "*.js": "eslint --fix"
   },
   "prettier": {
     "singleQuote": true
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "es2017": true,
+      "webextensions": true
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ]
   }
 }
