@@ -21,17 +21,16 @@ jobs:
       - name: Get version from package.json before the release step
         id: pre_release_version
         run: echo "::set-output name=version::$(npm run get-version --silent)"
-      - name: Release to GitHub
+      - name: Update package.json and release to GitHub
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GIT_AUTHOR_NAME: ops-bot
           GITAUTHOR_EMAIL: ops-bot@luiz.dev
           GIT_COMMITTER_NAME: ops-bot
           GIT_COMMITTER_EMAIL: ops-bot@luiz.dev
-        run: |
-          npm run release
-          npm run web-ext build
+        run: npm run release
       - name: Get version from package.json after release step
         id: post_release_version
         run: echo "::set-output name=version::$(npm run get-version --silent)"
