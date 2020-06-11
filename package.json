@@ -4,20 +4,6 @@
   "description": "Second test project for DDG - Tracker blocker extension",
   "type": "module",
   "main": "",
-  "scripts": {
-    "build": "npm run web-ext -- build",
-    "develop": "npm run web-ext -- run --verbose",
-    "format": "prettier --write \"**/*.{js,json,css,md}\"",
-    "lint": "npm run lint:js && npm run lint:ext",
-    "lint:ext": "npm run web-ext -- lint",
-    "lint:js": "eslint **/*.js",
-    "//": "eslint is configured with prettier, so it will check and fix js formatting too",
-    "lint:js:fix": "npm run lint:js -- --fix",
-    "pretest": "npm run lint",
-    "test": "echo '//TODO' && exit 0",
-    "release": "semantic-release",
-    "web-ext": "web-ext"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lfilho/ddg-test-project.git"
@@ -28,6 +14,21 @@
     "url": "https://github.com/lfilho/ddg-test-project/issues"
   },
   "homepage": "https://github.com/lfilho/ddg-test-project#readme",
+  "scripts": {
+    "build": "npm run web-ext -- build",
+    "develop": "npm run web-ext -- run",
+    "format": "prettier --write \"**/*.{js,json,css,md}\"",
+    "//": "eslint is configured with prettier, so it will check and fix js formatting too",
+    "lint": "npm run lint:js && npm run lint:ext",
+    "lint:ext": "npm run web-ext -- lint",
+    "lint:js": "eslint **/*.js",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "pretest": "npm run lint",
+    "release": "semantic-release",
+    "start": "npm run develop",
+    "test": "echo '//TODO' && exit 0",
+    "web-ext": "web-ext"
+  },
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
