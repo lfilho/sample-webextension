@@ -27,7 +27,8 @@
     "release": "semantic-release",
     "start": "npm run develop",
     "test": "echo '//TODO' && exit 0",
-    "web-ext": "web-ext"
+    "web-ext": "web-ext",
+    "get-version": "echo $npm_package_version"
   },
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
