@@ -5,13 +5,18 @@
   "type": "module",
   "main": "",
   "scripts": {
+    "build": "npm run web-ext -- build",
+    "develop": "npm run web-ext -- run --verbose",
     "format": "prettier --write \"**/*.{js,json,css,md}\"",
-    "lint": "eslint **/*.js",
+    "lint": "npm run lint:js && npm run lint:ext",
+    "lint:ext": "npm run web-ext -- lint",
+    "lint:js": "eslint **/*.js",
     "//": "eslint is configured with prettier, so it will check and fix js formatting too",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "pretest": "npm run lint",
     "test": "echo '//TODO' && exit 0",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "web-ext": "web-ext"
   },
   "repository": {
     "type": "git",
@@ -37,7 +42,8 @@
     "husky": "4.2.5",
     "lint-staged": "10.2.9",
     "prettier": "2.0.5",
-    "semantic-release": "17.0.8"
+    "semantic-release": "17.0.8",
+    "web-ext": "4.2.0"
   },
   "husky": {
     "hooks": {
@@ -46,7 +52,10 @@
   },
   "lint-staged": {
     "*.{json,css,md}": "npm run format --",
-    "*.js": "eslint --fix"
+    "*.js": [
+      "eslint --fix",
+      "web-ext lint"
+    ]
   },
   "prettier": {
     "singleQuote": true
@@ -91,5 +100,9 @@
       ],
       "@semantic-release/github"
     ]
+  },
+  "webExt": {
+    "sourceDir": "src",
+    "artifactsDir": "dist"
   }
 }
