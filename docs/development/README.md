@@ -2,6 +2,8 @@
 
 _All your base are belong to us_
 
+Here are some decisions we have done for our development, feel free to suggest better ones.
+
 ---
 
 ## Intallation
@@ -42,3 +44,8 @@ We're using Github Actions os our CI envirorment. Check the [.github folder](../
 
 - `npm test` on each PR.
 - `npm release` on each push to master, auto-generating a release, release notes, version bumps, etc. _See #36 for the initial work on it._
+
+## Git flow
+
+We're using feature branches and PRs to merge them to master.
+A branch can have as many commits as you like but PRs will be squashed into a single commit. So make your branches/PRs small and cohesive. This enables a more streamlined master's history, easier to rollback if needed, easier and faster to rebase, etc.
