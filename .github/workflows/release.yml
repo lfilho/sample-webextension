@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: 'Release GitHub'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm ci
+      - name: Get version from package.json before the release step
+        id: pre_release_version
+        run: echo "::set-output name=version::$(npm run get-version --silent)"
+      - name: Release to GitHub
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIT_AUTHOR_NAME: ddg-ops-bot
+          GITAUTHOR_EMAIL: ddg-ops-bot@duckduckgo.com
+          GIT_COMMITTER_NAME: ddg-ops-bot
+          GIT_COMMITTER_EMAIL: ddg-ops-bot@duckduckgo.com
+        run: npm run release
+      - name: Get version from package.json after release step
+        id: post_release_version
+        run: echo "::set-output name=version::$(npm run get-version --silent)"
+      - name: Create Pull Request with updated package files
+        if: steps.pre_release_version.outputs.version != steps.post_release_version.outputs.version
+        uses: peter-evans/create-pull-request@v2.8.0
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
+          committer: ddg-ops-bot <ddg-ops-bot@duckduckgo.com>
+          author: ddg-ops-bot <ddg-ops-bot@duckduckgo.com>
+          title: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
+          body: 'Bump version in package.json and package-lock.json for [${{ steps.post_release_version.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.post_release_version.outputs.version }}) release'
+          branch: version-bump/${{ steps.post_release_version.outputs.version }}
