@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/lfilho/ddg-test-project#readme",
   "scripts": {
-    "develop": "npm run web-ext -- run",
+    "develop": "npm run web-ext -- run --bc --url $(pwd)/test/shared/test_page.html",
     "format": "prettier --write \"**/*.{js,json,css,md}\"",
     "//eslint is configured with prettier, so it will check and fix js formatting too": "",
     "lint": "npm run lint:js && npm run lint:ext",
