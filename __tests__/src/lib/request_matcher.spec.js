@@ -1,9 +1,10 @@
 import RequestMatcher from '../../../src/lib/request_matcher.js';
+import { BAD_URL, GOOD_URL } from './__list_fixtures.js';
+
+beforeAll(() => RequestMatcher.denyList.add(BAD_URL));
+afterAll(() => RequestMatcher.denyList.clear());
 
 describe('Request Matcher', () => {
-  const BAD_URL = 'https://evil-tracker.com/tracker.js';
-  const GOOD_URL = 'https://duckduckgo.com/interview-url-showing-i-passed.js';
-
   it('should deny urls in the deny list', () => {
     const result = RequestMatcher.isDenied(BAD_URL);
     expect(result).toBe(true);

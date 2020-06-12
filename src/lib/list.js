@@ -10,6 +10,9 @@ export default class List {
   }
 
   has(url) {
+    // Look kid, one day there will be a complex algorithm here.
+    // For now, full matches only. In future iterations,
+    // we should support some sort of pattern instead: *evil-tracker.com/*
     return this.list.has(url);
   }
 
