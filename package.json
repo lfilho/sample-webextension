@@ -25,7 +25,8 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "pretest": "npm run lint",
     "start": "npm run develop",
-    "test": "echo '//TODO' && exit 0",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "npm test -- --watch",
     "web-ext": "web-ext",
     "//Release related scripts:": "",
     "release": "semantic-release",
@@ -45,12 +46,28 @@
     "eslint": "7.2.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-formatter-pretty": "3.0.1",
+    "eslint-plugin-jest": "23.13.2",
     "eslint-plugin-prettier": "3.1.3",
     "husky": "4.2.5",
+    "jest": "26.0.1",
+    "jest-watch-typeahead": "0.6.0",
     "lint-staged": "10.2.9",
     "prettier": "2.0.5",
     "semantic-release": "17.0.8",
     "web-ext": "4.2.0"
+  },
+  "jest": {
+    "displayName": "test",
+    "testRegex": "\\.spec\\.js$",
+    "testEnvironment": "jsdom",
+    "testURL": "http://localhost",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "husky": {
     "hooks": {
@@ -76,7 +93,8 @@
       "browser": true,
       "es2017": true,
       "webextensions": true,
-      "node": true
+      "node": true,
+      "jest": true
     },
     "plugins": [
       "prettier"
