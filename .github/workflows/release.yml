@@ -34,6 +34,9 @@ jobs:
       - name: Get version from package.json after release step
         id: post_release_version
         run: echo "::set-output name=version::$(npm run get-version --silent)"
+      - name: debugging pre and post versions
+        id: my-debug
+        run: echo "${{ steps.pre_release_version.outputs.version }} and ${{ steps.post_release_version.outputs.version }}"
       - name: Create Pull Request with updated package files
         if: steps.pre_release_version.outputs.version != steps.post_release_version.outputs.version
         uses: peter-evans/create-pull-request@v2.8.0
