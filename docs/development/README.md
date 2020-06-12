@@ -10,11 +10,11 @@ Here are some decisions we have done for our development, feel free to suggest b
 
 No mistery: `npm i`.
 
-## Test
+## Tests
 
-The main entry point is `npm test`.
-That will run linting and then the actual test suit for you.
-Check the npm scripts on package.json for what gets actually called behind that command.
+Tests are located under `tests/` folder.
+The main entry point is `npm test`. That will run linting and then the actual test suit for you.
+Check the npm scripts on `package.json` for what gets actually called behind that command.
 
 ## Linting and formatting
 

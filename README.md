@@ -10,6 +10,8 @@ Simple browser extension to identify and block trackers
 
 //TODO
 
+**Tests:** run `npm test` for linting + unit test combo
+
 For more details on installing a development environment and technical decisions around it, check our [development docs](docs/development/).
 
 ## Problem and Solution
