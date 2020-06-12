@@ -25,7 +25,7 @@
     "lint:js:fix": "npm run lint:js -- --fix",
     "pretest": "npm run lint",
     "start": "npm run develop",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "npm test -- --watch",
     "web-ext": "web-ext",
     "//Release related scripts:": "",
@@ -59,7 +59,7 @@
   "jest": {
     "displayName": "test",
     "testRegex": "\\.spec\\.js$",
-    "testEnvironment": "jsdom",
+    "testEnvironment": "jest-environment-node",
     "testURL": "http://localhost",
     "watchPlugins": [
       "jest-watch-typeahead/filename",
@@ -67,7 +67,8 @@
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
-    ]
+    ],
+    "transform": {}
   },
   "husky": {
     "hooks": {
