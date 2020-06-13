@@ -8,7 +8,8 @@ import {
 let list;
 
 beforeEach(() => {
-  list = new List();
+  const RANDOM_TYPE = List.types.DENY_LIST;
+  list = new List(RANDOM_TYPE);
 });
 
 describe('List', () => {
