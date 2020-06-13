@@ -1,6 +1,6 @@
 import browserWrapper from 'playwright-firefox';
 
-import { LOCAL_TEST_PAGE_URL } from '../src/lib/__list_fixtures.js';
+import { LOCAL_TEST_PAGE_URL } from '../shared/__url_fixtures.js';
 
 let page;
 let browser;

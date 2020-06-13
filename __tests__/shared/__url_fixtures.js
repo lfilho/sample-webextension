@@ -1,5 +1,3 @@
-//TODO rename this to url fixtures instead
-//TODO move this to shared folder
 import path from 'path';
 
 const HTML_PAGES_PATH = `${process.cwd()}/__tests__/shared/`;
