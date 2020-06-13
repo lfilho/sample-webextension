@@ -1,4 +1,4 @@
-import List from '../../../src/lib/list.js';
+import List from '../../../src/lib/model/list.js';
 import { A_URL, ANOTHER_URL, SOME_URLS } from '../../shared/__url_fixtures.js';
 
 let list;
@@ -52,9 +52,6 @@ describe('List', () => {
   it('should add several urls at once', () => {
     expect(list.size).toBe(0);
     list.bulkAdd(SOME_URLS);
-    expect(list.size).toBe(SOME_URLS.length);
-
-    list = new List(SOME_URLS);
     expect(list.size).toBe(SOME_URLS.length);
   });
 });

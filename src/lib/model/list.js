@@ -5,8 +5,16 @@ export default class List {
    * the API stays the same and the impact on the codebase is minimal.
    */
 
-  constructor(intialValues = null) {
-    this.list = new Set(intialValues);
+  constructor(type) {
+    this.list = new Set();
+    this.type = type;
+  }
+
+  static get types() {
+    return Object.freeze({
+      DENY_LIST: 'DENY',
+      ALLOW_LIST: 'ALLOW',
+    });
   }
 
   has(url) {

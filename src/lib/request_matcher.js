@@ -1,11 +1,11 @@
-import List from './list.js';
+import DenyList from './model/deny_list.js';
 
 let denyList;
 
 export default class RequestMatcher {
   static get denyList() {
     if (!denyList) {
-      denyList = new List();
+      denyList = new DenyList();
     }
     return denyList;
   }
