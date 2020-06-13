@@ -1,5 +1,5 @@
 import RequestMatcher from '../../../src/lib/request_matcher.js';
-import { BAD_URL, GOOD_URL } from './__list_fixtures.js';
+import { BAD_URL, GOOD_URL } from '../../shared/__url_fixtures.js';
 
 beforeAll(() => RequestMatcher.denyList.add(BAD_URL));
 afterAll(() => RequestMatcher.denyList.clear());

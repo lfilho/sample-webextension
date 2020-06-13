@@ -1,4 +1,4 @@
-import { A_URL } from './__list_fixtures.js';
+import { A_URL } from '../../shared/__url_fixtures.js';
 
 export const RANDOM_REQUEST_DETAILS = { url: A_URL };
 export const BLOCKING_RESPONSE = {

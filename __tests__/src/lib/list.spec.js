@@ -1,5 +1,5 @@
 import List from '../../../src/lib/list.js';
-import { A_URL, ANOTHER_URL, SOME_URLS } from './__list_fixtures.js';
+import { A_URL, ANOTHER_URL, SOME_URLS } from '../../shared/__url_fixtures.js';
 
 let list;
 
