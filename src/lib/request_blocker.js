@@ -6,10 +6,13 @@ import requestListener from './request_listener.js';
 export default class RequestBlocker {
   static startMonitoring() {
     const BLOCKING_FLAG = 'blocking';
+    const URL_FILTER = { urls: ['<all_urls>'] };
+
+    browser.webRequest.onErrorOccurred.addListener(console.error, URL_FILTER);
 
     browser.webRequest.onBeforeRequest.addListener(
       requestListener,
-      { urls: ['<all_urls>'] },
+      URL_FILTER,
       [BLOCKING_FLAG]
     );
   }
