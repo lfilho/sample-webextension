@@ -1,5 +1,9 @@
 import List from '../../../src/lib/model/list.js';
-import { A_URL, ANOTHER_URL, SOME_URLS } from '../../shared/__url_fixtures.js';
+import {
+  A_URL,
+  ANOTHER_URL,
+  SOME_URLS,
+} from '../../../src/shared/__url_fixtures.js';
 
 let list;
 
