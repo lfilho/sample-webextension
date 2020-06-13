@@ -1,1 +1,1 @@
-window.alert('This is comming from content script!');
+console.info('This is comming from content script!');
