@@ -32,7 +32,7 @@
     "release": "semantic-release",
     "build": "npm run web-ext -- build",
     "get-version": "echo $npm_package_version",
-    "change-ext-version": "node bin/change-ext-version.js"
+    "change-ext-version": "bin/change-ext-version.js"
   },
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
@@ -147,5 +147,6 @@
   "webExt": {
     "sourceDir": "src",
     "artifactsDir": "dist"
-  }
+  },
+  "dependencies": {}
 }
