@@ -4,6 +4,9 @@ _All your base are belong to us_
 
 Here are some decisions we have done for our development, feel free to suggest better ones.
 
+This document only highlights things necessary for contributing to this this codebase.
+For details on our architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md) instead.
+
 ---
 
 ## Intallation
@@ -42,8 +45,8 @@ In addition to the rationale above about ESM modules, I anticipate the javascrip
 
 We're using Github Actions os our CI envirorment. Check the [.github folder](../../.github/workflows/) for what we are using. In sum:
 
-- `npm test` on each PR.
-- `npm release` on each push to master, auto-generating a release, release notes, version bumps, etc. _See #36 for the initial work on it. And [the releases doc](./RELEASES.md) for more details on how releases are done._
+- `npm run test` on each PR.
+- `npm run release` on each push to master, auto-generating a release, release notes, version bumps, etc. _See #36 for the initial work on it. And [the releases doc](./RELEASES.md) for more details on how releases are done._
 
 ## Git flow
 

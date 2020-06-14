@@ -1,3 +1,5 @@
+import { ListTypeError } from '../../shared/model/error.js';
+
 export default class List {
   /*
    * Using a Set and mainly proxying the methods to their native ones.
@@ -7,8 +9,7 @@ export default class List {
 
   constructor(type) {
     if (!type) {
-      throw new Error('List constructor needs a type');
-      //TODO https://github.com/lfilho/ddg-test-project/issues/46
+      throw new ListTypeError();
     }
     this.list = new Set();
     this.type = type;
