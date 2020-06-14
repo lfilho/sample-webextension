@@ -8,7 +8,7 @@ export default class List {
   constructor(type) {
     if (!type) {
       throw new Error('List constructor needs a type');
-      //TODO Refactor Error strategy later on to contain an unique error code and both technical and user friendly messages
+      //TODO https://github.com/lfilho/sample-webextension/issues/46
     }
     this.list = new Set();
     this.type = type;
