@@ -1,11 +1,12 @@
-import List from '../../../src/lib/model/list.js';
+import List from '../../../../src/lib/model/list.js';
 import {
   A_URL,
-  ANOTHER_URL,
+  URL_IN_NO_LISTS,
   SOME_URLS,
-} from '../../../src/shared/__url_fixtures.js';
+} from '../../../../src/shared/__url_fixtures.js';
 
 let list;
+const ANOTHER_URL = URL_IN_NO_LISTS;
 
 beforeEach(() => {
   const RANDOM_TYPE = List.types.DENY_LIST;
