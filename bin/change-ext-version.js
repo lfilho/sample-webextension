@@ -2,11 +2,13 @@
 
 import fs from 'fs';
 
+import Logger from '../src/shared/util/logger.js';
+
 const MANITFEST_FILE = 'src/manifest.json';
 const newVersion = process.argv[2];
 
 function exitWithError(error) {
-  console.log(error);
+  Logger.error(error);
   process.exit(2);
 }
 
