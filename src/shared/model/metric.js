@@ -1,3 +1,8 @@
+import {
+  MetricInitializationError,
+  InvalidMetricDimensionError,
+} from '../../shared/model/error.js';
+
 const DIMENSIONS = Object.freeze({
   REQUEST_BLOCKED: 'REQUEST_BLOCKED',
 });
@@ -8,15 +13,12 @@ export default class Metric {
    */
   constructor(dimension, value) {
     if (!dimension || !value) {
-      //TODO https://github.com/lfilho/sample-webextension/issues/46
-      throw new Error(
-        'Metric constructor needs both a dimension and value for it'
-      );
+      throw new MetricInitializationError();
     }
+
     const possibleDimensions = Object.keys(DIMENSIONS);
     if (!possibleDimensions.includes(dimension)) {
-      //TODO https://github.com/lfilho/sample-webextension/issues/46
-      throw new Error(`Invalid dimension. Valid ones: ${possibleDimensions}`);
+      throw new InvalidMetricDimensionError();
     }
 
     this.dimension = dimension;
