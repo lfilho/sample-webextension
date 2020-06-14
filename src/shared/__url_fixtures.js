@@ -1,8 +1,8 @@
 const A_URL = 'https://example.com';
 const GOOD_URL = 'https://duckduckgo.com';
 const BAD_URL = 'https://evil-tracker.com';
-const ANOTHER_URL = GOOD_URL;
-const SOME_URLS = [A_URL, ANOTHER_URL, BAD_URL];
+const URL_IN_NO_LISTS = 'https://duck.co';
+const SOME_URLS = [A_URL, URL_IN_NO_LISTS, BAD_URL];
 const TEST_PAGE_GOOD_URL =
   'https://itty.bitty.site/#good_page/data:text/html;charset=utf-8;bxze64,XQAAAALrAQAAAAAAAAAeGInmWR9D5qtrM4PFJv4W1okR98bzFbE2QlIiIqEKRNhWozLGaVxy2UBVi6vb5PjLiS+KmhnoBI2zbVEi38FFqGt0V2dZ/n48NtEOjSTkOFXBuNLAKC6rlcwmvnHnUnMAWA2l/QImsEbNvvf1bv40vbtBzNp9F3TGp/HpcdlmwUSp59tjbjdUlRkOVnMxBaTPI6tnqjg9UBREwBH6Y4c6xLg53hJodPJyK8AysLdOEqC5OPFdGrHq7n6ViwKq90juHDM+UhFD8ug4iSu0Yo74yBMAo7Rtj+Jd5h9AkkjDCs/m4RMIP7KQKT4AldOuVvxaNDd4LcfbH/7lFxzMpv2FPyYxeR5ZmDMwE6422v7jh2OnV4nTcu42kWkhVBP7U06PxG1bBjmd5+5p11z/jK399tAktg==';
 const TEST_PAGE_BAD_URL =
@@ -14,7 +14,7 @@ export {
   A_URL,
   GOOD_URL,
   BAD_URL,
-  ANOTHER_URL,
+  URL_IN_NO_LISTS,
   SOME_URLS,
   TEST_PAGE_BAD_URL,
   TEST_PAGE_GOOD_URL,
