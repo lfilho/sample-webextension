@@ -1,11 +1,15 @@
 import Metric from './model/metric.js';
 import fetch from './util/fake_fetch.js';
 import Logger from './util/logger.js';
+import {
+  InvalidMetricTypeError,
+  ErrorSendingMetric,
+} from '../shared/model/error.js';
 
 export default class MetricService {
   static async emit(metric) {
     if (!(metric instanceof Metric)) {
-      throw new Error('Invalid metric.');
+      throw new InvalidMetricTypeError();
     }
 
     const metricPayload = getMetricPayload(metric);
@@ -20,9 +24,7 @@ export default class MetricService {
         Logger.info(metricString);
       })
       .catch((error) => {
-        Logger.error(
-          `Error while sending metric. Did you pay your internet bill? ${error}`
-        );
+        Logger.error(new ErrorSendingMetric(error));
       });
   }
 }
