@@ -28,7 +28,7 @@ jobs:
         uses: hmarr/auto-approve-action@v2.0.0
         if: github.actor == 'ddg-ops-bot'
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: "${{ secrets.GH_TOKEN }}"
 
   automerge:
     needs: [autoapprove]
@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: Automerging
         uses: pascalgn/automerge-action@v0.8.3
-        if: github.actor == 'ops-bot'
+        if: github.actor == 'ddg-ops-bot'
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           GITHUB_LOGIN: ddg-ops-bot
