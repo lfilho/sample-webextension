@@ -1,1 +1,4 @@
-console.log('This is coming from background script!');
+import RequestBlocker from './lib/request_blocker.js';
+
+console.log('Extension is ready to start blocking!');
+RequestBlocker.startMonitoring();
