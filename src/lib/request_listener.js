@@ -1,14 +1,16 @@
 import RequestMatcher from './request_matcher.js';
+import MetricService from '../shared/metric_service.js';
+import Metric from '../shared/model/metric.js';
 
-export default function requestListener(requestDetails) {
+export default async function requestListener(requestDetails) {
   const url = requestDetails.url;
   const isUrlDenied = RequestMatcher.isDenied(url);
-  const shouldBlock = { cancel: isUrlDenied };
+  const blockingReponse = { cancel: isUrlDenied };
 
   if (isUrlDenied) {
-    console.log(`Blocking request for: ${url}. Nice try!`);
-  } else {
-    console.log(`URL is good to go: ${url}.`);
+    const metric = new Metric(Metric.dimensions.REQUEST_BLOCKED, url);
+    await MetricService.emit(metric);
   }
-  return shouldBlock;
+
+  return blockingReponse;
 }
