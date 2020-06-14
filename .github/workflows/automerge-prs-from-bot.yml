@@ -21,21 +21,13 @@ on:
 
 jobs:
 
-  autoapprove:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Autoapproving
-        uses: hmarr/auto-approve-action@v2.0.0
-        if: github.actor == 'ops-bot'
-        with:
-          github-token: "${{ secrets.GH_TOKEN }}"
-
   automerge:
-    needs: [autoapprove]
     runs-on: ubuntu-latest
     steps:
       - name: Automerging
         uses: pascalgn/automerge-action@v0.8.3
+        with:
+          args: "--trace"
         if: github.actor == 'ops-bot'
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
