@@ -1,5 +1,6 @@
 import RequestMatcher from '../../../src/lib/request_matcher.js';
 import {
+  A_URL,
   BAD_URL,
   GOOD_URL,
   URL_IN_NO_LISTS,
@@ -25,6 +26,13 @@ describe('Request Matcher', () => {
   it('should allow urls if they are in the allow list', () => {
     RequestMatcher.allowList.add(GOOD_URL);
     const result = RequestMatcher.isDenied(GOOD_URL);
+    expect(result).toBe(false);
+  });
+
+  it('should allow urls in both lists', () => {
+    RequestMatcher.allowList.add(A_URL);
+    RequestMatcher.denyList.add(A_URL);
+    const result = RequestMatcher.isDenied(A_URL);
     expect(result).toBe(false);
   });
 });
