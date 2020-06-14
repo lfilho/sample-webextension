@@ -28,7 +28,7 @@ jobs:
         uses: hmarr/auto-approve-action@v2.0.0
         if: github.actor == 'ops-bot'
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: "${{ secrets.GH_TOKEN }}"
 
   automerge:
     needs: [autoapprove]
