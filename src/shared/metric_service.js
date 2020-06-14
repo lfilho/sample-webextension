@@ -1,5 +1,6 @@
 import Metric from './model/metric.js';
 import fetch from './util/fake_fetch.js';
+import Logger from './util/logger.js';
 
 export default class MetricService {
   static async emit(metric) {
@@ -9,19 +10,18 @@ export default class MetricService {
 
     const metricPayload = getMetricPayload(metric);
     const metricJson = getMetricJson(metricPayload);
-    const metricString = getMetricString(metricPayload);
+    const metricString = `${metric.dimension}=${metric.value}`;
 
     // Here we would make a `fetch` request to our metric service
     // For now, let's just log mimic an async request
     return fetch(metricJson)
       .then((response) => {
-        console.log(`Metric sent! Server returned status: ${response.status}`);
-        console.info(metricString);
+        Logger.debug(`Metric sent! Server returned status: ${response.status}`);
+        Logger.info(metricString);
       })
       .catch((error) => {
-        console.error(
-          'Error while sending metric. Did you pay your internet bill?',
-          error
+        Logger.error(
+          `Error while sending metric. Did you pay your internet bill? ${error}`
         );
       });
   }
@@ -44,8 +44,4 @@ function getMetricPayload(metric) {
 
 function getMetricJson(payload) {
   return JSON.stringify(payload);
-}
-
-function getMetricString(payload) {
-  return `INFO  ${payload.timestamp}  ${payload.dimension}=${payload.value}`;
 }
