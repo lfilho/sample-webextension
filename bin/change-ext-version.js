@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fs from 'fs';
 
 const MANITFEST_FILE = 'src/manifest.json';
