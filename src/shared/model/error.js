@@ -26,8 +26,8 @@ export class InvalidMetricTypeError extends DDGError {
   message = t('Invalid metric. Metric must be an instance of Metric');
 }
 
-export class ErrorSendingMetric extends DDGError {
-  message = t('Error while sending metric. Did you pay your internet bill?');
+export class RequestSendingError extends DDGError {
+  message = t('Error sending your message. Did you pay your internet bill?');
 }
 
 export class MetricInitializationError extends DDGError {
