@@ -44,6 +44,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           commit-message: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
           committer: ddg-ops-bot <ddg-ops-bot@duckduckgo.com>
+          labels: automerge
           author: ddg-ops-bot <ddg-ops-bot@duckduckgo.com>
           title: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
           body: 'Bump version in manifest.json, package.json and package-lock.json for [${{ steps.post_release_version.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.post_release_version.outputs.version }}) release'
