@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Best Tracker Blocker Ext",
   "description": "Tracker Blocker extension",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "icons": {
     "64": "icons/icon.png"
   },
