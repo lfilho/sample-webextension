@@ -4,7 +4,9 @@
   "description": "Tracker Blocker extension, part of DDG's interview process",
   "version": "1.4.2",
   "icons": {
-    "64": "icons/icon.png"
+    "16": "icons/duck-with-shades_16.png",
+    "32": "icons/duck-with-shades_32.png",
+    "64": "icons/duck-with-shades_64.png"
   },
   "permissions": ["webRequest", "webRequestBlocking", "<all_urls>"],
   "background": {
@@ -20,9 +22,11 @@
   ],
   "browser_action": {
     "default_icon": {
-      "64": "icons/icon.png"
+      "16": "icons/duck-with-shades_16.png",
+      "32": "icons/duck-with-shades_32.png",
+      "64": "icons/duck-with-shades_64.png"
     },
-    "default_popup": "browserAction/index.html",
+    "default_popup": "browser_action/index.html",
     "default_title": "DDG Best Tracker Ext"
   }
 }
