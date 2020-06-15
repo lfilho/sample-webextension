@@ -24,6 +24,9 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
+      - name: debugging pre and post versions
+        id: my-debug
+        run: echo "${{ github.actor }}"
       - name: Automerging
         uses: pascalgn/automerge-action@v0.8.3
         with:
