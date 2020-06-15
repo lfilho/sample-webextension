@@ -41,3 +41,7 @@ export class InvalidMetricDimensionError extends MyProjectError {
 export class ListTypeError extends MyProjectError {
   message = t('List constructor needs a type. See `List.types` for values.');
 }
+
+export class InputTooShortError extends MyProjectError {
+  message = t('The value entered is too short.');
+}
