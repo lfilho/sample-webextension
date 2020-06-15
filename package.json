@@ -138,7 +138,7 @@
       [
         "@semantic-release/github",
         {
-          "assets": "dist/*${nextRelease.version}.zip"
+          "assets": "dist/*.zip"
         }
       ]
     ]
