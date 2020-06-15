@@ -17,8 +17,8 @@ class MyProjectError extends Error {
 
     this.name = this.constructor.name; // subclass' name
 
-    // The argument passed will instead be used as additional debugging message
-    this.debugMessage = message;
+    // The argument passed will instead be used as an extra info message
+    this.extraInfo = message;
   }
 }
 
