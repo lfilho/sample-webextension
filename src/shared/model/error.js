@@ -26,8 +26,8 @@ export class InvalidMetricTypeError extends MyProjectError {
   message = t('Invalid metric. Metric must be an instance of Metric');
 }
 
-export class ErrorSendingMetric extends MyProjectError {
-  message = t('Error while sending metric. Did you pay your internet bill?');
+export class RequestSendingError extends MyProjectError {
+  message = t('Error sending your message. Did you pay your internet bill?');
 }
 
 export class MetricInitializationError extends MyProjectError {
