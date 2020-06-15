@@ -31,10 +31,15 @@ export default class Logger {
 
     const logFunction = getLogFunction(severity);
 
-    const logPrefix = `[${severity}]${LOG_TOKEN_SEPARATOR}${timestamp}${LOG_TOKEN_SEPARATOR}`;
+    const logPrefix = `[${severity.toUpperCase()}]${LOG_TOKEN_SEPARATOR}${timestamp}${LOG_TOKEN_SEPARATOR}`;
 
     let logMessage = `${logPrefix}${message}`;
 
+    // If an Error, augment it with extra info message, if available.
+    if (message instanceof Error) {
+      const extraInfo = message.extraInfo || '<none>';
+      logMessage = `${logMessage}\n[EXTRA INFO]: ${extraInfo}`;
+    }
     logFunction(logMessage);
   }
 }
