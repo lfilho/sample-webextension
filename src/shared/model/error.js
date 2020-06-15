@@ -41,3 +41,7 @@ export class InvalidMetricDimensionError extends DDGError {
 export class ListTypeError extends DDGError {
   message = t('List constructor needs a type. See `List.types` for values.');
 }
+
+export class InputTooShortError extends DDGError {
+  message = t('The value entered is too short.');
+}
