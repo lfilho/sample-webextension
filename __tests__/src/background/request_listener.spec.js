@@ -16,6 +16,7 @@ jest.mock('../../../src/shared/metric_service.js');
 
 beforeEach(() => {
   jest.clearAllMocks();
+  MetricService.emit = jest.fn();
 });
 
 describe('Request Listener', () => {
@@ -33,14 +34,12 @@ describe('Request Listener', () => {
 
   it('should emit a metric when a request is blocked', async () => {
     RequestMatcher.isDenied = jest.fn().mockReturnValue(true);
-    MetricService.emit = jest.fn();
     await requestListener(DENIED_REQUEST_DETAILS);
     expect(MetricService.emit).toBeCalledTimes(1);
   });
 
   it('should NOT emit a metric when a request is allowed', async () => {
     RequestMatcher.isDenied = jest.fn().mockReturnValue(false);
-    MetricService.emit = jest.fn();
     await requestListener(ALLOWED_REQUEST_DETAILS);
     expect(MetricService.emit).not.toBeCalled();
   });
