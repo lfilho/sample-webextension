@@ -1,4 +1,5 @@
+import Logger from '../shared/util/logger.js';
 import RequestBlocker from './request_blocker.js';
 
-console.log('Extension is ready to start blocking!');
+Logger.info('Extension is ready to start blocking!');
 RequestBlocker.startMonitoring();
