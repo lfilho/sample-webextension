@@ -21,7 +21,7 @@ jobs:
       - name: Get version from package.json before the release step
         id: pre_release_version
         run: echo "::set-output name=version::$(npm run get-version --silent)"
-      - name: Update package.json and release to GitHub
+      - name: Update manifest.json and package.json and release to GitHub
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -46,5 +46,5 @@ jobs:
           committer: ops-bot <ops-bot@luiz.dev>
           author: ops-bot <ops-bot@luiz.dev>
           title: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
-          body: 'Bump version in package.json and package-lock.json for [${{ steps.post_release_version.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.post_release_version.outputs.version }}) release'
+          body: 'Bump version in manifest.json, package.json and package-lock.json for [${{ steps.post_release_version.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.post_release_version.outputs.version }}) release'
           branch: version-bump/${{ steps.post_release_version.outputs.version }}
