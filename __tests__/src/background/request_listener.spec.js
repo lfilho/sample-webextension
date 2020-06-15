@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 
-import requestListener from '../../../src/lib/request_listener.js';
-import RequestMatcher from '../../../src/lib/request_matcher.js';
+import requestListener from '../../../src/background/request_listener.js';
+import RequestMatcher from '../../../src/background/request_matcher.js';
 import MetricService from '../../../src/shared/metric_service.js';
 
 import {
@@ -11,7 +11,7 @@ import {
   BLOCKING_RESPONSE,
 } from './__request_fixtures.js';
 
-jest.mock('../../../src/lib/request_matcher.js');
+jest.mock('../../../src/background/request_matcher.js');
 jest.mock('../../../src/shared/metric_service.js');
 
 beforeEach(() => {

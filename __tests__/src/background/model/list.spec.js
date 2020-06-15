@@ -1,4 +1,4 @@
-import List from '../../../../src/lib/model/list.js';
+import List from '../../../../src/background/model/list.js';
 import {
   A_URL,
   URL_IN_NO_LISTS,
