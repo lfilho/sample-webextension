@@ -6,7 +6,7 @@ export default class Logger {
       INFO: 'info',
       WARN: 'warn',
       ERROR: 'error',
-      DEBUG: 'log',
+      DEBUG: 'debug',
     });
   }
 
@@ -51,10 +51,10 @@ function getLogFunction(severity) {
     const isDebugEnv = env === 'debug';
 
     const shouldDebug = isDebugEnv && severity === Logger.severities.DEBUG;
-    shouldLog = isTestEnv || !shouldDebug;
+    shouldLog = !isTestEnv || shouldDebug;
   }
 
-  if (shouldLog) {
+  if (!shouldLog) {
     return () => {};
   }
 
