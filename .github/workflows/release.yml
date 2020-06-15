@@ -44,6 +44,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           commit-message: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
           committer: ops-bot <ops-bot@luiz.dev>
+          labels: automerge
           author: ops-bot <ops-bot@luiz.dev>
           title: 'chore(release): ${{ steps.post_release_version.outputs.version }}'
           body: 'Bump version in manifest.json, package.json and package-lock.json for [${{ steps.post_release_version.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.post_release_version.outputs.version }}) release'

@@ -31,11 +31,11 @@ jobs:
         uses: pascalgn/automerge-action@v0.8.3
         with:
           args: "--trace"
-        if: github.actor == 'ops-bot'
+        if: github.actor == 'lfilho'
         env:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           GITHUB_LOGIN: ops-bot
-          MERGE_LABELS: ""
+          MERGE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-title"
           MERGE_RETRIES: "10"
