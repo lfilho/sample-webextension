@@ -11,22 +11,22 @@ export default class Logger {
   }
 
   static info(message) {
-    this.log(message, this.severities.INFO);
+    Logger.log(message, Logger.severities.INFO);
   }
 
   static warn(message) {
-    this.log(message, this.severities.WARN);
+    Logger.log(message, Logger.severities.WARN);
   }
 
   static error(message) {
-    this.log(message, this.severities.ERROR);
+    Logger.log(message, Logger.severities.ERROR);
   }
 
   static debug(message) {
-    this.log(message, this.severities.DEBUG);
+    Logger.log(message, Logger.severities.DEBUG);
   }
 
-  static log(message, severity = this.severities.INFO) {
+  static log(message, severity = Logger.severities.INFO) {
     const timestamp = new Date().toISOString();
 
     const logFunction = getLogFunction(severity);
@@ -43,13 +43,18 @@ function getLogFunction(severity) {
   // If running node tests, don't log anything to avoid polluting the tests output:
   // Optional chainig is not supported by eslint yet (would break our tests). Hence using good old && checks
   // @see https://github.com/eslint/eslint/pull/13416
-  const env = process && process.env && process.env.NODE_ENV;
-  const isTestEnv = env === 'test';
-  const isDebugEnv = env === 'debug';
+  let shouldLog = true;
 
-  const shouldDebug = isDebugEnv && severity === Logger.severities.DEBUG;
+  if (typeof process !== 'undefined') {
+    const env = process && process.env && process.env.NODE_ENV;
+    const isTestEnv = env === 'test';
+    const isDebugEnv = env === 'debug';
 
-  if (isTestEnv || !shouldDebug) {
+    const shouldDebug = isDebugEnv && severity === Logger.severities.DEBUG;
+    shouldLog = isTestEnv || !shouldDebug;
+  }
+
+  if (shouldLog) {
     return () => {};
   }
 
