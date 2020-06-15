@@ -1,31 +1,22 @@
 import Metric from './model/metric.js';
-import fetch from './util/fake_fetch.js';
+import { post } from './util/fake_fetch.js';
+import { METRIC_ENDPOINT } from './config.js';
 import Logger from './util/logger.js';
-import {
-  InvalidMetricTypeError,
-  ErrorSendingMetric,
-} from '../shared/model/error.js';
+import { InvalidMetricTypeError } from '../shared/model/error.js';
 
 export default class MetricService {
-  static async emit(metric) {
+  static emit(metric) {
     if (!(metric instanceof Metric)) {
       throw new InvalidMetricTypeError();
     }
 
     const metricPayload = getMetricPayload(metric);
-    const metricJson = getMetricJson(metricPayload);
     const metricString = `${metric.dimension}=${metric.value}`;
 
     // Here we would make a `fetch` request to our metric service
     // For now, let's just log mimic an async request
-    return fetch(metricJson)
-      .then((response) => {
-        Logger.debug(`Metric sent! Server returned status: ${response.status}`);
-        Logger.info(metricString);
-      })
-      .catch((error) => {
-        Logger.error(new ErrorSendingMetric(error));
-      });
+    Logger.debug(`Sending metric: ${metricString}`);
+    return post(METRIC_ENDPOINT, metricPayload);
   }
 }
 
@@ -33,17 +24,10 @@ export default class MetricService {
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
 
 function getMetricPayload(metric) {
-  const timestamp = new Date().toISOString();
-
   const payload = {
-    timestamp,
     dimension: metric.dimension,
     value: metric.value,
   };
 
   return payload;
-}
-
-function getMetricJson(payload) {
-  return JSON.stringify(payload);
 }
