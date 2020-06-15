@@ -1,4 +1,4 @@
-import RequestMatcher from '../../../src/lib/request_matcher.js';
+import RequestMatcher from '../../../src/background/request_matcher.js';
 import {
   A_URL,
   BAD_URL,
