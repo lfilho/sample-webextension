@@ -14,7 +14,7 @@ export default class MetricService {
     const metricString = `${metric.dimension}=${metric.value}`;
 
     // Here we would make a `fetch` request to our metric service
-    // For now, let's just log mimic an async request
+    // For now, let's just log and mock a fetch request
     Logger.debug(`Sending metric: ${metricString}`);
     return post(METRIC_ENDPOINT, metricPayload);
   }
