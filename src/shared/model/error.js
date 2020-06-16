@@ -38,10 +38,6 @@ export class InvalidMetricDimensionError extends DDGError {
   message = t('Invalid metric dimension. See `Metric.dimensions` for values.');
 }
 
-export class ListTypeError extends DDGError {
-  message = t('List constructor needs a type. See `List.types` for values.');
-}
-
 export class InputTooShortError extends DDGError {
   message = t('The value entered is too short.');
 }
