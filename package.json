@@ -5,6 +5,9 @@
   "description": "Second test project for - Tracker blocker extension",
   "type": "module",
   "main": "",
+  "engines": {
+    "node": ">=13"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lfilho/sample-webextension.git"
@@ -16,7 +19,7 @@
   },
   "homepage": "https://github.com/lfilho/sample-webextension#readme",
   "scripts": {
-    "develop": "npm run web-ext -- run --bc --url $(pwd)/__tests__/shared/test_page.html",
+    "develop": "web-ext run --bc --url $(pwd)/__tests__/shared/test_page.html",
     "format": "prettier --write \"**/*.{js,json,css,md}\"",
     "//eslint is configured with prettier, so it will check and fix js formatting too": "",
     "lint": "eslint \"**/*.js\"",
@@ -25,10 +28,9 @@
     "start": "npm run develop",
     "test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "npm test -- --watch",
-    "web-ext": "web-ext",
     "//Release related scripts:": "",
     "release": "semantic-release",
-    "build": "npm run web-ext -- build",
+    "build": "web-ext build",
     "get-version": "echo $npm_package_version",
     "change-ext-version": "bin/change_ext_version.js"
   },
@@ -78,7 +80,7 @@
   "lint-staged": {
     "*.{json,css,md}": "npm run format --",
     "*.js": [
-      "eslint --fix"
+      "npm run lint:fix"
     ]
   },
   "prettier": {
