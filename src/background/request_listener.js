@@ -11,8 +11,7 @@ export default async function requestListener(requestDetails) {
   if (isUrlDenied) {
     const metric = new Metric(Metric.dimensions.REQUEST_BLOCKED, url);
     try {
-      const response = await MetricService.emit(metric);
-      Logger.debug(`Metric sent! Server returned status: ${response.status}`);
+      await MetricService.emit(metric);
     } catch (error) {
       Logger.error(error);
     }
