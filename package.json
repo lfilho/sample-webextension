@@ -145,7 +145,10 @@
   },
   "webExt": {
     "sourceDir": "src",
-    "artifactsDir": "dist"
+    "artifactsDir": "dist",
+    "ignoreFiles": [
+      "images/duck-with-shades.png"
+    ]
   },
   "dependencies": {}
 }
