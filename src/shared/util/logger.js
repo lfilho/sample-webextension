@@ -1,5 +1,3 @@
-const LOG_TOKEN_SEPARATOR = '  ';
-
 export default class Logger {
   static get severities() {
     return Object.freeze({
@@ -29,24 +27,18 @@ export default class Logger {
   static log(message, severity = Logger.severities.INFO) {
     const timestamp = new Date().toISOString();
 
+    const regularInfo = getFormattedLogLine(severity, timestamp, message);
+    const extraInfo = getAugumentedErrorMessage(message);
+    const logLine = [regularInfo, extraInfo].filter(Boolean).join('\n');
+
     const logFunction = getLogFunction(severity);
-
-    const logPrefix = `[${severity.toUpperCase()}]${LOG_TOKEN_SEPARATOR}${timestamp}${LOG_TOKEN_SEPARATOR}`;
-
-    let logMessage = `${logPrefix}${message}`;
-
-    // If an Error, augment it with extra info message, if available.
-    if (message instanceof Error) {
-      const extraInfo = message.extraInfo || '<none>';
-      logMessage = `${logMessage}\n[EXTRA INFO]: ${extraInfo}`;
-    }
-    logFunction(logMessage);
+    logFunction(logLine);
   }
 }
 
 function getLogFunction(severity) {
   // If running node tests, don't log anything to avoid polluting the tests output:
-  // Optional chainig is not supported by eslint yet (would break our tests). Hence using good old && checks
+  // Optional chaining is not supported by eslint yet (would break our tests). Hence using good old && checks
   // @see https://github.com/eslint/eslint/pull/13416
   let shouldLog = true;
 
@@ -60,8 +52,29 @@ function getLogFunction(severity) {
   }
 
   if (!shouldLog) {
-    return () => {};
+    const noop = () => {};
+    return noop;
   }
 
   return console[severity].bind(console);
+}
+
+const TOKEN_SEPARATOR = '  ';
+function getFormattedLogLine(severity, timestamp, message) {
+  const prefix = `[${severity.toUpperCase()}]`;
+  return [prefix, timestamp, message].join(TOKEN_SEPARATOR);
+}
+
+function getAugumentedErrorMessage(message) {
+  let augumentWith = null;
+
+  // If an Error, augment it with extra info message, if available.
+  if (message instanceof Error) {
+    const extraInfo = message.extraInfo;
+    if (extraInfo) {
+      augumentWith = `[EXTRA INFO]: ${extraInfo}`;
+    }
+  }
+
+  return augumentWith;
 }
