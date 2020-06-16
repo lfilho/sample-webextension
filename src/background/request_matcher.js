@@ -13,6 +13,7 @@ export default class RequestMatcher {
       allowList = new AllowList();
       ListPopulator.populateList(allowList);
     }
+
     return allowList;
   }
 
@@ -21,15 +22,17 @@ export default class RequestMatcher {
       denyList = new DenyList();
       ListPopulator.populateList(denyList);
     }
+
     return denyList;
   }
 
   static isDenied(url) {
     // Allow list implies a user's deliberate action to allow that url
     // Hence the precedence below
-    if (this.allowList.has(url)) {
+    if (this.allowList.matches(url)) {
       return false;
     }
-    return this.denyList.has(url);
+
+    return this.denyList.matches(url);
   }
 }
