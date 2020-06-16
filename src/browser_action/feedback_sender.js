@@ -2,10 +2,11 @@ import { post } from '../shared/util/fake_fetch.js';
 import { hasMinimalLength } from '../shared/util/validation.js';
 import Logger from '../shared/util/logger.js';
 import { InputTooShortError } from '../shared/model/error.js';
-import { FEEDBACK_ENDPOINT } from '../shared/config.js';
-
-const COMMENT_FIELD_SELECTOR = '#comment-field';
-const MESSAGES_CONTAINER_SELECTOR = '#messages';
+import {
+  FEEDBACK_COMMENT_FIELD_SELECTOR,
+  FEEDBACK_MESSAGES_CONTAINER_SELECTOR,
+  FEEDBACK_ENDPOINT,
+} from '../shared/config.js';
 
 const $ = document.querySelector.bind(document);
 
@@ -13,7 +14,7 @@ export async function submitFeedbackListener(event) {
   event.preventDefault();
 
   try {
-    const feedback = $(COMMENT_FIELD_SELECTOR).value;
+    const feedback = $(FEEDBACK_COMMENT_FIELD_SELECTOR).value;
 
     validate(feedback);
 
@@ -31,7 +32,7 @@ export async function submitFeedbackListener(event) {
 }
 
 function showMessage(text, className = '') {
-  const messagesContainer = $(MESSAGES_CONTAINER_SELECTOR);
+  const messagesContainer = $(FEEDBACK_MESSAGES_CONTAINER_SELECTOR);
   messagesContainer.className = className;
   messagesContainer.innerText = text;
 }

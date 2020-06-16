@@ -1,5 +1,8 @@
 import { submitFeedbackListener } from './feedback_sender.js';
+import { FEEDBACK_SUBMIT_BUTTON_SELECTOR } from '../shared/config.js';
 
-const SUBMIT_BUTTON_SELECTOR = '#submit';
 const $ = document.querySelector.bind(document);
-$(SUBMIT_BUTTON_SELECTOR).addEventListener('click', submitFeedbackListener);
+$(FEEDBACK_SUBMIT_BUTTON_SELECTOR).addEventListener(
+  'click',
+  submitFeedbackListener
+);
