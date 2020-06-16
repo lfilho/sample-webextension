@@ -148,7 +148,7 @@
     "sourceDir": "src",
     "artifactsDir": "dist",
     "ignoreFiles": [
-      "images/duck-with-shades.png"
+      "images/duck_with_shades.png"
     ]
   }
 }
