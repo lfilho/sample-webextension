@@ -1,5 +1,3 @@
-import { ListTypeError } from '../../shared/model/error.js';
-
 export default class List {
   /*
    * Using a Set and mainly proxying the methods to their native ones.
@@ -7,12 +5,8 @@ export default class List {
    * the API stays the same and the impact on the codebase is minimal.
    */
 
-  constructor(type) {
-    if (!type) {
-      throw new ListTypeError();
-    }
+  constructor() {
     this.list = new Set();
-    this.type = type;
   }
 
   static get types() {
