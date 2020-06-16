@@ -8,8 +8,9 @@ import {
   RANDOM_REQUEST_DETAILS,
   ALLOWED_REQUEST_DETAILS,
   DENIED_REQUEST_DETAILS,
-  BLOCKING_RESPONSE,
 } from './__request_fixtures.js';
+
+import BlockingResponse from '../../../src/background/model/blocking_response.js';
 
 jest.mock('../../../src/background/request_matcher.js');
 jest.mock('../../../src/shared/metric_service.js');
@@ -23,13 +24,13 @@ describe('Request Listener', () => {
   it('should return a BlockingResponse with cancel: true for a tracker url', async () => {
     RequestMatcher.isDenied = jest.fn().mockReturnValue(true);
     const result = await requestListener(RANDOM_REQUEST_DETAILS);
-    expect(result).toEqual(BLOCKING_RESPONSE.CANCELLED);
+    expect(result).toEqual(BlockingResponse.CANCELLED);
   });
 
   it('should return a BlockingResponse with cancel: false for a non-tracker url', async () => {
     RequestMatcher.isDenied = jest.fn().mockReturnValue(false);
     const result = await requestListener(RANDOM_REQUEST_DETAILS);
-    expect(result).toEqual(BLOCKING_RESPONSE.NOT_CANCELLED);
+    expect(result).toEqual(BlockingResponse.NOT_CANCELLED);
   });
 
   it('should emit a metric when a request is blocked', async () => {
