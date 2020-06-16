@@ -58,7 +58,7 @@ const milestones = [
   {
     milestone: 'Advanced functionality',
     issues: [
-      'The extension is able to update the local deny list from DDG’s servers',
+      'The extension is able to update the local deny list from our servers',
       'The extension is able to sync custom entries to the lists to the user’s account (Google’s, Mozilla’s, etc) so they persit across devices/browser installations.',
       'Ensure compatibility with Google Chrome (desktop)',
       'Ensure compatibility with Microsoft Edge (desktop)',
