@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "DDG Best Tracker Blocker Ext",
   "description": "Tracker Blocker extension, part of DDG's interview process",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "icons": {
     "16": "images/duck_with_shades_16.png",
     "32": "images/duck_with_shades_32.png",
