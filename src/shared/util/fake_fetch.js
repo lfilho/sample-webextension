@@ -26,5 +26,6 @@ function fetch(url, payload) {
     const feedback = JSON.parse(payload.body).feedback;
     return feedback === 'fail' ? fail : success;
   }
+
   return success;
 }
