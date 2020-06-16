@@ -1,16 +1,14 @@
 import List from '../../../../src/background/model/list.js';
 import {
   A_URL,
-  URL_IN_NO_LISTS,
+  URL_IN_NO_LISTS as ANOTHER_URL,
   SOME_URLS,
 } from '../../../../src/shared/__url_fixtures.js';
 
 let list;
-const ANOTHER_URL = URL_IN_NO_LISTS;
 
 beforeEach(() => {
-  const RANDOM_TYPE = List.types.DENY_LIST;
-  list = new List(RANDOM_TYPE);
+  list = new List();
 });
 
 describe('List', () => {
