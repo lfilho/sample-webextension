@@ -34,8 +34,8 @@ describe('List', () => {
 
   it('should tell if an url is on the list', () => {
     list.add(A_URL);
-    expect(list.has(A_URL)).toBe(true);
-    expect(list.has(ANOTHER_URL)).toBe(false);
+    expect(list.matches(A_URL)).toBe(true);
+    expect(list.matches(ANOTHER_URL)).toBe(false);
   });
 
   it('should clear the list', () => {
