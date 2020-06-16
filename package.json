@@ -19,21 +19,20 @@
   },
   "homepage": "https://github.com/lfilho/ddg-test-project#readme",
   "scripts": {
-    "develop": "web-ext run --bc --url $(pwd)/__tests__/shared/test_page.html",
-    "format": "prettier --write \"**/*.{js,json,css,md}\"",
-    "//eslint is configured with prettier, so it will check and fix js formatting too": "",
+    "start": "npm run develop",
+    "develop": "web-ext run --browser-console --url $(pwd)/__tests__/shared/test_page.html",
+    "build": "web-ext build",
+    "release": "semantic-release",
+    "format:fix": "prettier --write \"**/*.{js,json,css,md}\"",
     "lint": "eslint \"**/*.js\"",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "npm run lint",
-    "start": "npm run develop",
     "test": "NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "npm test -- --watch",
-    "//Release related scripts:": "",
-    "release": "semantic-release",
-    "build": "web-ext build",
     "get-version": "echo $npm_package_version",
     "change-ext-version": "bin/change_ext_version.js"
   },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
@@ -78,9 +77,9 @@
     }
   },
   "lint-staged": {
-    "*.{json,css,md}": "npm run format --",
+    "*.{json,css,md}": "npm run format:fix --",
     "*.js": [
-      "npm run lint:fix"
+      "npm run lint:fix --"
     ]
   },
   "prettier": {
@@ -151,6 +150,5 @@
     "ignoreFiles": [
       "images/duck-with-shades.png"
     ]
-  },
-  "dependencies": {}
+  }
 }
