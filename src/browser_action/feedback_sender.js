@@ -46,7 +46,7 @@ function showErrorMessage(message) {
 }
 
 function showWaitingMessage() {
-  showMessage('Sending...');
+  showMessage('⏳ Sending...');
 }
 
 function validate(feedback) {
