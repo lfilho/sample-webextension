@@ -1,6 +1,6 @@
 # Development
 
-_All your base are belong to us_
+_All your base are belong to us!_
 
 Here are some decisions we have done for our development, feel free to suggest better ones.
 
@@ -11,44 +11,53 @@ For details on our architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md) instea
 
 ## Intallation
 
-No mistery: `npm i`.
+1. Install node >= 13 -- We're using native ESM modules.
+2. Clone this repo and then run `npm install` within it.
+
+## Extension live reload and debugging
+
+Use `npm run develop` or `npm start` to run `web-ext run` behind the scenes.
+
+`web-ext` in an official tool from Mozilla that will
+
+- Spin up a browser instance (separate from your personal/already running one)
+- Watch for file changes and automatically load your extension code in it
+
+Learn how you can debug the extension on the browser on [Mozilla's Extension Workshop website](https://extensionworkshop.com/documentation/develop/debugging/).
 
 ## Tests
 
-Tests are located under `tests/` folder.
-The main entry point is `npm test`. That will run linting and then the actual test suit for you.
-Check the npm scripts on `package.json` for what gets actually called behind that command.
+Here some basic commands to run tests. For more information and guidance on **testing**, see [TESTING.md](/docs/development/TESTING.md)
+
+- **Folder.** All tests are in the [`/__tests__/`](/__tests__/) folder.
+- **Entrypoints.**
+  - **`npm run test`** or **`npm test`**. The main one. Will run `npm run lint` and then the actual test suit using `jest`.
+    - **`npm run test:watch`.** Will watch your files for changes and auto run `npm run test` when a file is changed.
+  - **`npm run lint`.** Will lint your javascript files.
+    - **`npm run lint:fix`.** Will lint your javascript files and auto-fix whatever it can. Automatically called before any commit. Details below.
+
+Check the npm scripts on [`package.json`](/package.json) for what gets actually called behind each command.
 
 ## Linting and formatting
 
-_See #35 for the initial work on this._
+- We use **[lint-staged](https://npm.im/lint-staged)** and **[husky](https://npm.im/husky)** to automatically run tests before commits. Check their sections in [`package.json`](/package.json) for more details on what they do.
+- We use **[prettier](https://npm.im/prettier)** to auto style our code so you don't have to worry about it. ✨
+  - **`npm run format`.** Will auto format your js, json, css and markdown files using `prettier`. This command is called by lint-staged before any commit attempt.
+- We use **[eslint](https://npm.im/eslint)** to lint (and fix, when possible) our code for common errors. It is configured to also report and fix `prettier` errors, making `eslint` our single entry point for static analysis.
+  - **`npm run lint:fix`.** Will lint your javascript files and auto-fix whatever it can. This command is called by lint-staged before any commit attempt.
 
-1. We use [lint-staged](https://npm.im/lint-staged) and [husky](https://npm.im/husky) to automatically run tests before commits. Check the `husky` and `lint-staged` sections in `packaging.json` for more details on what it does.
-2. We use [prettier](https://npm.im/prettier) to auto style our code so you don't have to worry about it. ✨
-3. We use [eslint](https://npm.im/eslint) to lint (and fix, when possible) our code for common errors. It is configured to also report and fix `prettier` errors, making `eslint` our single entry point for static analysis.
-4. We recommend also running auto-linting and formatting upon file save with your editor, so your staging and committing flow is faster and with less surprises.
-5. Both `eslint` and `prettier` configurations are defined in `package.json`.
+## Recommended dev setup
 
-## ESM modules - No bundlers
+For your daily development, we recommend:
 
-For the purposes of this project/interview, I'll be using a modern version of Node and Firefox to develop and test the changes.
-That allows us to use ESM modules all the way from Node to the browser.
-If needed/time permitting, we can always add Snowpack or Webpack later have the usual transpilation done, but I wanted to save that time configuring all that boilerplate and slowing development down.
-
-Another reason not to demand a bundler upfront is that since this project is an extension, not a webapp. So it's likely it won't get huge like most webapps nowadays, and will be download just once when installing the extension (and the occasional update). Hence we don't need to rush towards minification, bundling, tree-shaking, etc.
-
-## No babel
-
-In addition to the rationale above about ESM modules, I anticipate the javascript in this project will be mainly vanilla javascript, not complex enough to need much else transpilation -- the only real external dependency is the WebExtension API which is already implemented in most major browsers for more than 2 years (and it's something that Babel wouldn't be able to "transpile" anyway).
+- Having one terminal window running `npm run develop`
+- Having one terminal window running `npm run test:watch`
+- Running linting and formatting automatically upon file save with your editor/IDE, so your testing and committing flows are faster and with less surprises.
 
 ## CI
 
-We're using Github Actions os our CI envirorment. Check the [.github folder](../../.github/workflows/) for what we are using. In sum:
+We're using Github Actions as our CI envirorment. Check the [workflows folder](/.github/workflows/) for what we are using. In sum, it:
 
-- `npm run test` on each PR.
-- `npm run release` on each push to master, auto-generating a release, release notes, version bumps, etc. _See #36 for the initial work on it. And [the releases doc](./RELEASES.md) for more details on how releases are done._
-
-## Git flow
-
-We're using feature branches and PRs to merge them to master.
-A branch can have as many commits as you like but PRs will be squashed into a single commit. So make your branches/PRs small and cohesive. This enables a more streamlined master's history, easier to rollback if needed, easier and faster to rebase, etc.
+- Runs `npm run test` on each PR.
+- Runs `npm run release` on each push to `master`, auto-generating a release, release notes, version bumps, etc. See the [RELEASES.md](/docs/development/RELEASES.md) for more details on how releases are done.
+- Create a new PR with the updated files and automerge it
