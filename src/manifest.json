@@ -4,9 +4,9 @@
   "description": "Tracker Blocker extension",
   "version": "1.5.1",
   "icons": {
-    "16": "images/duck-with-shades_16.png",
-    "32": "images/duck-with-shades_32.png",
-    "64": "images/duck-with-shades_64.png"
+    "16": "images/duck_with_shades_16.png",
+    "32": "images/duck_with_shades_32.png",
+    "64": "images/duck_with_shades_64.png"
   },
   "permissions": ["webRequest", "webRequestBlocking", "<all_urls>"],
   "background": {
@@ -14,9 +14,9 @@
   },
   "browser_action": {
     "default_icon": {
-      "16": "images/duck-with-shades_16.png",
-      "32": "images/duck-with-shades_32.png",
-      "64": "images/duck-with-shades_64.png"
+      "16": "images/duck_with_shades_16.png",
+      "32": "images/duck_with_shades_32.png",
+      "64": "images/duck_with_shades_64.png"
     },
     "default_popup": "browser_action/index.html",
     "default_title": "Best Tracker Ext"
