@@ -8,7 +8,7 @@ Simple browser extension to identify and block trackers.
 
 ## A submission for DuckDuckGo as part of their hiring process 🐣➡️🦆
 
-Interviewers and reviewers please see [INTERVIEW.md](/docs/INTERVIEW.md) for remarks and considerations with the interview process in mind.
+**Interviewers and reviewers** please see [INTERVIEW.md](/docs/INTERVIEW.md) for remarks and considerations with the interview process in mind.
 
 ## Quick installation and tests
 

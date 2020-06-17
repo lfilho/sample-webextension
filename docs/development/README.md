@@ -27,7 +27,7 @@ Learn how you can debug the extension on the browser on [Mozilla's Extension Wor
 
 ## Tests
 
-Here some basic commands to run tests. For more information and guidance on **testing**, see [TESTING.md](/docs/development/TESTING.md)
+Here some basic commands to run tests.
 
 - **Folder.** All tests are in the [`/__tests__/`](/__tests__/) folder.
 - **Entrypoints.**
