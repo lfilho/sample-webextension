@@ -1,7 +1,11 @@
-//
-// WIP
-// Will return to this file after https://github.com/lfilho/ddg-test-project/issues/38
-//
+/*
+ * TODO work in this file is paused/block.
+ * More details and follow up on:
+ *   - https://github.com/lfilho/ddg-test-project/issues/38
+ *   - https://github.com/mozilla/web-ext/issues/1927
+ *   - https://github.com/jsdom/jsdom/issues/2475
+ */
+
 /**
  * @jest-environment jsdom
  */
@@ -40,6 +44,7 @@ describe.skip('Browser Action', () => {
   });
 });
 */
+
 describe.skip('Browser Action', () => {
   it.skip();
 });
