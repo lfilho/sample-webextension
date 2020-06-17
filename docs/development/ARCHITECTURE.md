@@ -30,7 +30,7 @@ Please follow that convention if we ever need, for example, [Content Scripts](ht
 
 ## Error Handling
 
-_See #46 for more details on the reasoning for our Error handling._
+_See [#46](https://github.com/lfilho/ddg-test-project/issues/46) for more details on the reasoning for our Error handling._
 
 All errors in our codebase should extend `DDGError` class. This give us a few benefits:
 

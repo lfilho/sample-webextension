@@ -9,34 +9,18 @@ For details on our architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md) instea
 
 ---
 
-## Intallation
-
-1. Install node >= 13 -- We're using native ESM modules.
-2. Clone this repo and then run `npm install` within it.
-
 ## Extension live reload and debugging
 
-Use `npm run develop` or `npm start` to run `web-ext run` behind the scenes.
+Use `npm run develop` or `npm start` to run `web-ext run` behind the scenes. `web-ext` in an official tool from Mozilla that will:
 
-`web-ext` in an official tool from Mozilla that will
-
-- Spin up a browser instance (separate from your personal/already running one)
-- Watch for file changes and automatically load your extension code in it
+- Spin up a _new_ browser instance.
+- Watch for file changes and automatically reload them in the browser.
 
 Learn how you can debug the extension on the browser on [Mozilla's Extension Workshop website](https://extensionworkshop.com/documentation/develop/debugging/).
 
-## Tests
+## Testing
 
-Here some basic commands to run tests.
-
-- **Folder.** All tests are in the [`/__tests__/`](/__tests__/) folder.
-- **Entrypoints.**
-  - **`npm run test`** or **`npm test`**. The main one. Will run `npm run lint` and then the actual test suit using `jest`.
-    - **`npm run test:watch`.** Will watch your files for changes and auto run `npm run test` when a file is changed.
-  - **`npm run lint`.** Will lint your javascript files.
-    - **`npm run lint:fix`.** Will lint your javascript files and auto-fix whatever it can. Automatically called before any commit. Details below.
-
-Check the npm scripts on [`package.json`](/package.json) for what gets actually called behind each command.
+See [TESTING.md](/docs/development/TESTING.md).
 
 ## Linting and formatting
 

@@ -19,4 +19,4 @@ We follow [SemVer](https://semver.org/). Automatically. 🤯. How?
 1. Upon any push to `master`, the `semantic-release` tool (run by the workflow above), will traverse all commits since last release and decide on a new semver version for our app. How?
 2. By parsing each commit message against [conventional commits](https://conventionalcommits.org/) and decide what makes a patch, minor or major version bump.
 
-That means that we have to be diligent about our commit messages and follow the conventional commits standard above.
+That means that we have to be diligent about our commit messages and follow the conventional commits standard above. It will actually get enforced during PR time: we run the [`conventional_commits_checker.yml`]('/.github/workflows/conventional_commits_checker.yml') workflow to check our commits for us.
