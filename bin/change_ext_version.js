@@ -1,29 +1,23 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
+import fs from 'fs/promises';
 
 import Logger from '../src/shared/util/logger.js';
 
-const MANITFEST_FILE = 'src/manifest.json';
+const MANIFEST_FILE = 'src/manifest.json';
+const UTF8 = 'utf8';
 const newVersion = process.argv[2];
 
-function exitWithError(error) {
-  Logger.error(error);
-  process.exit(2);
-}
-
-fs.readFile(MANITFEST_FILE, 'utf8', (err, fileContent) => {
-  if (err) {
-    exitWithError(err);
+(async () => {
+  try {
+    const fileContent = await fs.readFile(MANIFEST_FILE, UTF8);
+    const newFileContent = fileContent.replace(
+      /"version": "\d+.\d+.\d+"/,
+      `"version": "${newVersion}"`
+    );
+    await fs.writeFile(MANIFEST_FILE, newFileContent, UTF8);
+  } catch (error) {
+    Logger.error(error);
+    process.exit(2);
   }
-  const newFileContent = fileContent.replace(
-    /"version": "\d+.\d+.\d+"/g,
-    `"version": "${newVersion}"`
-  );
-
-  fs.writeFile(MANITFEST_FILE, newFileContent, 'utf8', (err) => {
-    if (err) {
-      exitWithError(err);
-    }
-  });
-});
+})();
