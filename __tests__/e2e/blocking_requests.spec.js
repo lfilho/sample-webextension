@@ -1,5 +1,9 @@
-//TODO work in this file is paused/block.
-// More details and follow up on: https://github.com/lfilho/sample-webextension/issues/38
+/*
+ * TODO work in this file is paused/block.
+ * More details and follow up on:
+ *   - https://github.com/lfilho/sample-webextension/issues/38
+ *   - https://github.com/mozilla/web-ext/issues/1927
+ */
 
 /*
 import browserWrapper from 'playwright-firefox';
@@ -9,10 +13,8 @@ import webExt from 'web-ext';
 import pptr from 'puppeteer-core';
 
 import { LOCAL_TEST_PAGE_URL } from '../shared/__url_fixtures.js';
-*/
-let page;
-/*
-let browser;
+
+let page, browser;
 
 beforeAll(async () => {
   webExt.default.util.logger.consoleStream.makeVerbose();
@@ -52,16 +54,6 @@ afterAll(async () => {
 });
 */
 
-describe('request to known tracker urls should be blocked', () => {
-  it.skip('loads the test page', async () => {
-    const text = await page.evaluate(() => {
-      return document.querySelector('[data-testid="test-page-header"]');
-    });
-    expect(text).toBeTruthy();
-  });
-
-  it.skip('blocks a known bad url by not loading its iframe', async () => {
-    //TODO waiting on resolution for: https://github.com/mozilla/web-ext/issues/1927
-    // More details and follow up on: https://github.com/lfilho/sample-webextension/issues/38
-  });
+describe.skip('request to known tracker urls should be blocked', () => {
+  it.skip();
 });
