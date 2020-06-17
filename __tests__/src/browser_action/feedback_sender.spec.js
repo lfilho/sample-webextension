@@ -11,14 +11,14 @@
  */
 
 /*
-import fs from 'fs';
+import fs from 'fs/promises';
 import { jest } from '@jest/globals';
 import { submitFeedbackListener } from '../../../src/browser_action/feedback_sender.js';
 
 jest.mock('../../../src/browser_action/feedback_sender.js');
 
 const browserActionPath = `${process.cwd()}/src/browser_action/index.html`;
-const browserActionHtml = fs.readFileSync(browserActionPath).toString();
+const browserActionHtml = await fs.readFile(browserActionPath, 'utf8').toString();
 
 describe.skip('Browser Action', () => {
   let $, submitButton, messagesContainer;
