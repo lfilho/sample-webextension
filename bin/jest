@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# --experimental-vm-modules flag:
+#   Needed for the ESM support in Jest.
+#   When it's fully there, we can just remove this file and use jest normally
+
+# --no-warnings flag:
+#   The experimental flag above will generate noisy warnings in stdout.
+#   Just silencing them to keep our test runs beautiful :-)
+
+NODE_ENV=test node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js $1
