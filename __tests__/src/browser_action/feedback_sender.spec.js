@@ -6,45 +6,73 @@
  *   - https://github.com/jsdom/jsdom/issues/2475
  */
 
-/**
- * @jest-environment jsdom
- */
+import {
+  jest,
+  beforeAll,
+  afterAll,
+  beforeEach,
+  afterEach,
+} from '@jest/globals';
+// import { submitFeedbackListener } from '../../../src/browser_action/feedback_sender.js';
+import path from 'path';
+import playwrightWrapper from 'playwright-firefox';
+import webExtWrapper from 'web-ext';
+import getPort from 'get-port';
 
-/*
-import fs from 'fs/promises';
-import { jest } from '@jest/globals';
-import { submitFeedbackListener } from '../../../src/browser_action/feedback_sender.js';
+const { firefox } = playwrightWrapper;
+const webExt = webExtWrapper.default;
 
 jest.mock('../../../src/browser_action/feedback_sender.js');
 
-const browserActionPath = `${process.cwd()}/src/browser_action/index.html`;
-const browserActionHtml = await fs.readFile(browserActionPath, 'utf8').toString();
+webExt.util.logger.consoleStream.makeVerbose();
+webExt.util.logger.consoleStream.startCapturing();
 
-describe.skip('Browser Action', () => {
-  let $, submitButton, messagesContainer;
-  beforeEach(() => {
-    // document.documentElement.innerHTML = browserActionHtml;
-    $ = document.querySelector.bind(document);
-    submitButton = $('#submit');
-    messagesContainer = $('#messages');
-  });
+// const browserActionPath = `${process.cwd()}/src/browser_action/index.html`;
+const browserActionPath = `https://mozilla.org`;
+let browser, page, webExtRunner;
 
-  afterEach(() => {
-    // restore the original func after test
-    jest.resetModules();
-  });
+beforeAll(async () => {
+  // Launch firefox
+  webExtRunner = await webExt.cmd.run(
+    {
+      sourceDir: path.join(process.cwd(), 'src'),
+      firefox: firefox.executablePath(),
+      args: [`-juggler=${getPort()}`],
+    },
+    {
+      shouldExitProgram: false,
+    }
+  );
 
-  it('button exists', (done) => {
-    expect(submitButton).toBeTruthy();
-    submitButton.click();
-    setTimeout(() => {
-      expect(messagesContainer.textContent).toMatch(/Thank you!/);
-      done();
-    }, 5000);
-  });
+  // Parse firefox logs and extract juggler endpoint.
+  const JUGGLER_MESSAGE = `Juggler listening on`;
+  const message = webExt.util.logger.consoleStream.capturedMessages.find(
+    (msg) => msg.includes(JUGGLER_MESSAGE)
+  );
+  const wsEndpoint = message.split(JUGGLER_MESSAGE).pop();
+
+  // Connect playwright and start driving browser.
+  browser = await firefox.connect({ wsEndpoint });
 });
-*/
 
-describe.skip('Browser Action', () => {
-  it.skip();
+afterAll(async () => {
+  await browser.close();
+  await webExtRunner.exit();
+});
+
+beforeEach(async () => {
+  page = await browser.newPage();
+});
+
+afterEach(async () => {
+  jest.resetModules();
+  await page.close();
+});
+
+describe('Browser Action', () => {
+  it('button exists', async () => {
+    await page.goto(browserActionPath);
+    const submitButton = await page.$('#fxa-learn-primary');
+    await expect(submitButton).toBeTruthy();
+  });
 });
