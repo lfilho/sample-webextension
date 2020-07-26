@@ -43,5 +43,5 @@ For your daily development, we recommend:
 We're using Github Actions as our CI envirorment. Check the [workflows folder](/.github/workflows/) for what we are using. In sum, it:
 
 - Runs `npm run test` on each PR.
-- Runs `npm run release` on each push to `master`, auto-generating a release, release notes, version bumps, etc. See the [RELEASES.md](/docs/development/RELEASES.md) for more details on how releases are done.
+- Runs `npm run release` on each push to `main`, auto-generating a release, release notes, version bumps, etc. See the [RELEASES.md](/docs/development/RELEASES.md) for more details on how releases are done.
 - Create a new PR with the updated files and automerge it
