@@ -1,7 +1,6 @@
 {
   "name": "sample-webextension",
   "version": "1.0.0",
-  "private": true,
   "description": "Second test project for - Tracker blocker extension",
   "type": "module",
   "main": "",
